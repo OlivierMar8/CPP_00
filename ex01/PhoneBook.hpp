@@ -11,6 +11,8 @@ class	PhoneBook {
 		~PhoneBook( void );
 		int		getCount( void ) const;
 		void	setCount( int c );	
+		int		getOldest( void ) const;
+		void	setOldest( int c );	
 
 		void	enterCmd( void );
 		void	collectData( void );
@@ -25,6 +27,7 @@ class	PhoneBook {
 
 		Contact	tab[8];
 		int		count;
+		int		oldest;
 
 };
 

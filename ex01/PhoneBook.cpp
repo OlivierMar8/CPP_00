@@ -6,6 +6,7 @@
 PhoneBook::PhoneBook( void ) {
 
 	this->count = -1;
+	this->oldest = -1;
 	return;
 }
 
@@ -20,14 +21,17 @@ void	PhoneBook::enterCmd( void ) {
 
 	cmd = "a";
     std::cout << "My Awesome PhoneBook" << std::endl;
-	while (cmd.compare("EXIT") != 0)
+	//while (cmd.compare("EXIT") != 0)
+	while (cmd.compare("E") != 0)
 	{
 		std::cout << "Please enter a command: ADD, SEARCH or EXIT";
 		std::cout  << std::endl;
 		std::cin >> cmd;
-		if (cmd.compare("ADD") == 0)
+//		if (cmd.compare("ADD") == 0)
+		if (cmd.compare("A") == 0)
 			this->collectData();
-		else if (cmd.compare("SEARCH") == 0)
+//		else if (cmd.compare("SEARCH") == 0)
+		else if (cmd.compare("S") == 0)
 			this->searchContact();
 
 
@@ -59,11 +63,26 @@ void	PhoneBook::collectData( void ) {
 
 void	PhoneBook::addContact( std::string data[5] ) {
 
-	(void)data;
+	int	i;
+
+	
 	Contact	c(data[0], data[1], data[2], data[3], data[4]);
-	if (this->count == 7 || this->count == -1)
-		this->count = 0;
-	this->tab[count] = c;
+	if (this->count == -1)
+	{
+		i = 0;
+		this->oldest = 0;
+	}
+	else if (this->count == 7)
+	{
+		i = this->oldest;
+		this->oldest++;
+		if (this->oldest > 7)
+			this->oldest = 0;
+		this->count--;
+	}
+	else
+		i = this->count + 1;
+	this->tab[i] = c;
 	this->count++;
 }
 
@@ -96,7 +115,7 @@ void	PhoneBook::printList( void ) const {
 		std::cout << "*********************************************"  << std::endl;
 		std::cout << "*     Index|First Name| Last Name|  Nickname*" << std::endl;
 		std::cout << "*********************************************"  << std::endl;
-		for (int i = 0; i < this->count; i++)
+		for (int i = 0; i <= this->count; i++)
 		{
 			std::cout << "*         " << i + 1 << "|";
 			printFormList(this->tab[i].getFirstName());
