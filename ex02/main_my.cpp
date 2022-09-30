@@ -5,6 +5,7 @@ int main (void)
 
 	Account	acc(42);
 	Account	bbb(30);
+	Account::displayAccountsInfos();
 	acc.displayStatus();
 	bbb.displayStatus();
 	acc.makeDeposit(5);

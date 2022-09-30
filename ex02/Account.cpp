@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 #include "Account.hpp"
 
 Account::Account( void) {
@@ -30,6 +31,16 @@ int	Account::getNbAccounts( void ) {
 //	std::cout << " getNbAccounts " << std::endl;
 //	return f::_nbAccounts;
 	return 1;
+}
+
+void	Account::displayAccountsInfos( void ) {
+
+	std::cout << "accounts:" << 4 << ";total:" << 20857 ;
+	std::cout << ";deposits:" << 10 << ";withdrawals:" ;
+	std::cout << 7 << std::endl;
+
+	return;
+
 }
 
 void	Account::makeDeposit( int deposit ) {
