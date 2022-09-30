@@ -17,7 +17,7 @@ class	PhoneBook {
 		void	enterCmd( void );
 		void	collectData( void );
 		void	addContact( std::string data[5]);
-		int		searchContact( void ) const;
+		void	searchContact( void ) const;
 		void	printFormList( std::string s) const;
 		void	printList( void ) const;
 		void	printContact( int i ) const;

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <sstream>
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook( void ) {
@@ -24,9 +25,9 @@ void	PhoneBook::enterCmd( void ) {
 	//while (cmd.compare("EXIT") != 0)
 	while (cmd.compare("E") != 0)
 	{
-		std::cout << "Please enter a command: ADD, SEARCH or EXIT";
+		std::cout << "Please enter a command: ADD, SEARCH or EXIT: ";
 		std::cout  << std::endl;
-		std::cin >> cmd;
+		std::getline(std::cin, cmd);
 //		if (cmd.compare("ADD") == 0)
 		if (cmd.compare("A") == 0)
 			this->collectData();
@@ -42,22 +43,17 @@ void	PhoneBook::enterCmd( void ) {
 void	PhoneBook::collectData( void ) {
 
 	std::string data[5];
-/*	std::string lm;
-	std::string nn;
-	std::string pn;
-	std::string ds;
-*/	
 	
-	std::cout << "First name: " << std::endl;
-	std::cin >> data[0];
-	std::cout << "Last name: " << std::endl;
-	std::cin >> data[1];
-	std::cout << "Nickname: " << std::endl;
-	std::cin >> data[2];
-	std::cout << "Phone number: " << std::endl;
-	std::cin >> data[3];
-	std::cout << "Darkest secret: " << std::endl;
-	std::cin >> data[4];
+	std::cout << "First name: ";
+	std::getline(std::cin, data[0]);
+	std::cout << "Last name: ";
+	std::getline(std::cin, data[1]);
+	std::cout << "Nickname: ";
+	std::getline(std::cin, data[2]);
+	std::cout << "Phone number: ";
+	std::getline(std::cin, data[3]);
+	std::cout << "Darkest secret: ";
+	std::getline(std::cin, data[4]);
 	this->addContact( data );
 }
 
@@ -86,14 +82,23 @@ void	PhoneBook::addContact( std::string data[5] ) {
 	this->count++;
 }
 
-int		PhoneBook::searchContact( void ) const {
+void	PhoneBook::searchContact( void ) const {
+
+	int			index;
+//	std::string	index;
 
 	if (this->count < 1)
 		std::cout << "No contact in the PhoneBook !"  << std::endl;
-
 	printList();
-
-	return 1;
+	std::cout << "Please enter an index: 1 - " << this->count + 1 << std::endl;
+	while (!(std::cin >> index) || index < 0 || index > this->count + 1)
+	{
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "Error : bad index !" << std::endl; 
+	}
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	printContact(index);
 }
 
 void    PhoneBook::printFormList( std::string s) const {
@@ -128,10 +133,23 @@ void	PhoneBook::printList( void ) const {
 		std::cout << "*********************************************"  << std::endl;
 }
 
-
-
-
 void	PhoneBook::printContact( int i) const {
-(void)i;
+
+	i--;
+	std::cout << "First name: " << "\t";
+	std::cout <<this->tab[i].getFirstName();
+	std::cout  << std::endl;
+	std::cout << "Last name: " << "\t";
+	std::cout <<this->tab[i].getLastName();
+	std::cout  << std::endl;
+	std::cout << "Nickname: " << "\t";
+	std::cout <<this->tab[i].getNickname();
+	std::cout  << std::endl;
+	std::cout << "Phone number: " << "\t";
+	std::cout <<this->tab[i].getPhoneNumber();
+	std::cout  << std::endl;
+	std::cout << "Darkest secret: ";
+	std::cout <<this->tab[i].getDarkestSecret();
+	std::cout  << std::endl;
 }
 
