@@ -4,7 +4,7 @@ OBJS		= $(SRCS:.cpp=.o)
 
 NAME		= phonebook
 
-CC			= c++
+CC			= c++-12
 
 RM			= rm -f
 

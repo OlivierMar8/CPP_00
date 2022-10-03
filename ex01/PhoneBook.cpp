@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <limits>
 #include <string>
 #include <sstream>
 #include "PhoneBook.hpp"
@@ -22,22 +23,17 @@ void	PhoneBook::enterCmd( void ) {
 
 	cmd = "a";
     std::cout << "My Awesome PhoneBook" << std::endl;
-	//while (cmd.compare("EXIT") != 0)
-	while (cmd.compare("E") != 0)
+	while (cmd.compare("EXIT") != 0)
 	{
 		std::cout << "Please enter a command: ADD, SEARCH or EXIT: ";
 		std::cout  << std::endl;
 		std::getline(std::cin, cmd);
-//		if (cmd.compare("ADD") == 0)
-		if (cmd.compare("A") == 0)
+		if (cmd.compare("ADD") == 0)
 			this->collectData();
-//		else if (cmd.compare("SEARCH") == 0)
-		else if (cmd.compare("S") == 0)
+		else if (cmd.compare("SEARCH") == 0)
 			this->searchContact();
-
-
-		std::cout << "Command: " << cmd << std::endl;
 	}
+	return;
 }
 
 void	PhoneBook::collectData( void ) {
@@ -61,7 +57,6 @@ void	PhoneBook::addContact( std::string data[5] ) {
 
 	int	i;
 
-	
 	Contact	c(data[0], data[1], data[2], data[3], data[4]);
 	if (this->count == -1)
 	{
@@ -85,20 +80,21 @@ void	PhoneBook::addContact( std::string data[5] ) {
 void	PhoneBook::searchContact( void ) const {
 
 	int			index;
-//	std::string	index;
 
 	if (this->count < 1)
 		std::cout << "No contact in the PhoneBook !"  << std::endl;
 	printList();
 	std::cout << "Please enter an index: 1 - " << this->count + 1 << std::endl;
-	while (!(std::cin >> index) || index < 0 || index > this->count + 1)
+	while (!(std::cin >> index) || index < 1 || index > this->count + 1)
 	{
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << "Error : bad index !" << std::endl; 
+		std::cout << "Error : bad index ! Enter an index: " << std::endl; 
 	}
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	printContact(index);
+	std::cout << "*********************************************"  << std::endl;
+	return;
 }
 
 void    PhoneBook::printFormList( std::string s) const {
@@ -111,9 +107,8 @@ void    PhoneBook::printFormList( std::string s) const {
 	else
 		std::cout << std::setw(10);
 	std::cout << s;
+	return;
 }
-
-
 
 void	PhoneBook::printList( void ) const {
 	
@@ -131,6 +126,7 @@ void	PhoneBook::printList( void ) const {
 			std::cout << "*" << std::endl;
 		}
 		std::cout << "*********************************************"  << std::endl;
+		return;
 }
 
 void	PhoneBook::printContact( int i) const {
@@ -151,5 +147,6 @@ void	PhoneBook::printContact( int i) const {
 	std::cout << "Darkest secret: ";
 	std::cout <<this->tab[i].getDarkestSecret();
 	std::cout  << std::endl;
+	return;
 }
 
