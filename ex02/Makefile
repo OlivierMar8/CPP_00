@@ -1,4 +1,4 @@
-SRCS		= 	Account.cpp main_my.cpp	
+SRCS		= 	Account.cpp tests.cpp #main_my.cpp	
 
 OBJS		= $(SRCS:.cpp=.o)
 
