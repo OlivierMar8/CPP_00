@@ -1,6 +1,6 @@
 #include "Account.hpp"
 #include <iostream>
-#include <chrono>
+#include <ctime>
 #include <iomanip>
 
 int	Account::_nbAccounts = 0;
@@ -136,10 +136,14 @@ void	Account::displayStatus ( void ) const {
 
 void Account::_displayTimestamp( void ) {
 
-	std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();
+//	std::cout << "19001004_144100";
+	time_t now;
+
+	time(&now);
+	tm utc_tm = *localtime(&now);
+	/*	std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();
 	std::time_t time_now = std::chrono::system_clock::to_time_t(now);
-	tm utc_tm = *localtime(&time_now);
-	std::cout << std::setfill('0') << "[" << (utc_tm.tm_year + 1900);
+*/	std::cout << std::setfill('0') << "[" << (utc_tm.tm_year + 1900);
 	std::cout << std::setw(2) <<utc_tm.tm_mon + 1;
 	std::cout << std::setw(2) <<utc_tm.tm_mday <<"_";	
 	std::cout << std::setw(2) <<utc_tm.tm_hour;

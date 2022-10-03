@@ -12,8 +12,8 @@ class Contact {
 		Contact( std::string fn, std::string ln, std::string nn, \
                  std::string pn, std::string ds);
 		~Contact( void );
-		void	printContact( int index, Contact p);
-		
+
+		void		printContact( int index, Contact p);
 		std::string	getFirstName( void ) const;
 		std::string	getLastName( void ) const;
 		std::string	getNickname( void ) const;
@@ -21,11 +21,11 @@ class Contact {
 		std::string	getDarkestSecret( void ) const;
 
 
-		void	setFirstName( std::string fn );	
-		void	setLastName( std::string ln );	
-		void	setNickame( std::string nn );	
-		void	setPhoneNumber( std::string pn );	
-		void	setDarkestSecret( std::string ds );
+		void		setFirstName( std::string fn );	
+		void		setLastName( std::string ln );	
+		void		setNickame( std::string nn );	
+		void		setPhoneNumber( std::string pn );	
+		void		setDarkestSecret( std::string ds );
 
 	private:
 

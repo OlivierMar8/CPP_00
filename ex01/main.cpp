@@ -7,13 +7,20 @@ int main( void ) {
 
 	std::string d[5];
 	PhoneBook	book;
+
+	book.enterCmd();
+	
+	return (0);
+}
+
+/*	Pour saisie de jeux de test :
 	d[0]="Paul";d[1]="Dupont";d[2]="ldu";d[3]="123456789abc";d[4]="lol";
 	book.addContact(d);
 	d[0]="Jean";d[1]="DeMontmollin";d[2]="jmo";d[3]="98765412";d[4]="test";
 	book.addContact(d);
 	d[0]="Toto";d[1]="Dulac";d[2]="lac";d[3]="000123456789abc";d[4]="tri";
 	book.addContact(d);
-/*	d[0]="Rene";d[1]="Berger";d[2]="rbe";d[3]="AA789abc";d[4]="sel";
+	d[0]="Rene";d[1]="Berger";d[2]="rbe";d[3]="AA789abc";d[4]="sel";
 	book.addContact(d);
 	d[0]="Maria";d[1]="Lini";d[2]="mli";d[3]="994589";d[4]="the";
 	book.addContact(d);
@@ -26,8 +33,3 @@ int main( void ) {
 	d[0]="Romain";d[1]="Savoir";d[2]="sav";d[3]="963852";d[4]="cpp";
 	book.addContact(d);
 */
-	book.enterCmd();
-	
-	return (0);
-}
-

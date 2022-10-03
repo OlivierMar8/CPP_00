@@ -81,19 +81,22 @@ void	PhoneBook::searchContact( void ) const {
 
 	int			index;
 
-	if (this->count < 1)
-		std::cout << "No contact in the PhoneBook !"  << std::endl;
-	printList();
-	std::cout << "Please enter an index: 1 - " << this->count + 1 << std::endl;
-	while (!(std::cin >> index) || index < 1 || index > this->count + 1)
+	if (this->count < 0)
+		std::cout << "No contacts in the PhoneBook !"  << std::endl;
+	else
 	{
-		std::cin.clear();
+		printList();
+		std::cout << "Please enter an index: 1 - " << this->count + 1 << std::endl;
+		while (!(std::cin >> index) || index < 1 || index > this->count + 1)
+		{
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cout << "Error : bad index ! Enter an index: " << std::endl; 
+		}
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << "Error : bad index ! Enter an index: " << std::endl; 
+		printContact(index);
+		std::cout << "*********************************************"  << std::endl;
 	}
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	printContact(index);
-	std::cout << "*********************************************"  << std::endl;
 	return;
 }
 
