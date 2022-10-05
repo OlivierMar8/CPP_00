@@ -1,3 +1,5 @@
+//PhoneBook.cpp	CPP00 / ex01
+
 #include <iostream>
 #include <iomanip>
 #include <limits>
@@ -7,8 +9,8 @@
 
 PhoneBook::PhoneBook( void ) {
 
-	this->count = -1;
-	this->oldest = -1;
+	this->_count = -1;
+	this->_oldest = -1;
 	return;
 }
 
@@ -40,54 +42,59 @@ void	PhoneBook::collectData( void ) {
 
 	std::string data[5];
 	
-	std::cout << "First name: ";
-	std::getline(std::cin, data[0]);
-	std::cout << "Last name: ";
-	std::getline(std::cin, data[1]);
-	std::cout << "Nickname: ";
-	std::getline(std::cin, data[2]);
-	std::cout << "Phone number: ";
-	std::getline(std::cin, data[3]);
-	std::cout << "Darkest secret: ";
-	std::getline(std::cin, data[4]);
-	this->addContact( data );
+std::cout << "First name: ";
+while (!(std::getline(std::cin, data[0])) || data[0].size() < 1)
+	std::cout << "Field is mandatory. First name: ";
+std::cout << "Last name: ";
+while (!(std::getline(std::cin, data[1])) || data[1].size() < 1)
+	std::cout << "Field is mandatory. Last name: ";
+std::cout << "Nickname: ";
+while (!(std::getline(std::cin, data[2])) || data[2].size() < 1)
+	std::cout << "Field is mandatory. Nickname: ";
+std::cout << "Phone number: ";
+while (!(std::getline(std::cin, data[3])) || data[3].size() < 1)
+	std::cout << "Field is mandatory. Phone Number: ";
+std::cout << "Darkest secret: ";
+while (!(std::getline(std::cin, data[4])) || data[4].size() < 1)
+	std::cout << "Field is mandatory. Darkest secret: ";
+this->addContact( data );
 }
 
 void	PhoneBook::addContact( std::string data[5] ) {
 
-	int	i;
+int	i;
 
-	Contact	c(data[0], data[1], data[2], data[3], data[4]);
-	if (this->count == -1)
-	{
-		i = 0;
-		this->oldest = 0;
-	}
-	else if (this->count == 7)
-	{
-		i = this->oldest;
-		this->oldest++;
-		if (this->oldest > 7)
-			this->oldest = 0;
-		this->count--;
-	}
-	else
-		i = this->count + 1;
-	this->tab[i] = c;
-	this->count++;
+Contact	c(data[0], data[1], data[2], data[3], data[4]);
+if (this->_count == -1)
+{
+	i = 0;
+	this->_oldest = 0;
+}
+else if (this->_count == 7)
+{
+	i = this->_oldest;
+	this->_oldest++;
+	if (this->_oldest > 7)
+		this->_oldest = 0;
+	this->_count--;
+}
+else
+	i = this->_count + 1;
+	this->_tab[i] = c;
+	this->_count++;
 }
 
 void	PhoneBook::searchContact( void ) const {
 
 	int			index;
 
-	if (this->count < 0)
+	if (this->_count < 0)
 		std::cout << "No contacts in the PhoneBook !"  << std::endl;
 	else
 	{
 		printList();
-		std::cout << "Please enter an index: 1 - " << this->count + 1 << std::endl;
-		while (!(std::cin >> index) || index < 1 || index > this->count + 1)
+		std::cout << "Please enter an index: 1 - " << this->_count + 1 << std::endl;
+		while (!(std::cin >> index) || index < 1 || index > this->_count + 1)
 		{
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -118,14 +125,14 @@ void	PhoneBook::printList( void ) const {
 		std::cout << "*********************************************"  << std::endl;
 		std::cout << "*     Index|First Name| Last Name|  Nickname*" << std::endl;
 		std::cout << "*********************************************"  << std::endl;
-		for (int i = 0; i <= this->count; i++)
+		for (int i = 0; i <= this->_count; i++)
 		{
 			std::cout << "*         " << i + 1 << "|";
-			printFormList(this->tab[i].getFirstName());
+			printFormList(this->_tab[i].getFirstName());
 			std::cout  << "|";
-			printFormList(this->tab[i].getLastName());
+			printFormList(this->_tab[i].getLastName());
 			std::cout  << "|";
-			printFormList(this->tab[i].getNickname());
+			printFormList(this->_tab[i].getNickname());
 			std::cout << "*" << std::endl;
 		}
 		std::cout << "*********************************************"  << std::endl;
@@ -136,19 +143,19 @@ void	PhoneBook::printContact( int i) const {
 
 	i--;
 	std::cout << "First name: " << "\t";
-	std::cout <<this->tab[i].getFirstName();
+	std::cout <<this->_tab[i].getFirstName();
 	std::cout  << std::endl;
 	std::cout << "Last name: " << "\t";
-	std::cout <<this->tab[i].getLastName();
+	std::cout <<this->_tab[i].getLastName();
 	std::cout  << std::endl;
 	std::cout << "Nickname: " << "\t";
-	std::cout <<this->tab[i].getNickname();
+	std::cout <<this->_tab[i].getNickname();
 	std::cout  << std::endl;
 	std::cout << "Phone number: " << "\t";
-	std::cout <<this->tab[i].getPhoneNumber();
+	std::cout <<this->_tab[i].getPhoneNumber();
 	std::cout  << std::endl;
 	std::cout << "Darkest secret: ";
-	std::cout <<this->tab[i].getDarkestSecret();
+	std::cout <<this->_tab[i].getDarkestSecret();
 	std::cout  << std::endl;
 	return;
 }

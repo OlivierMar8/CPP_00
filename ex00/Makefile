@@ -4,7 +4,7 @@ OBJS		= $(SRCS:.cpp=.o)
 
 NAME		= megaphone
 
-CC			= c++-12
+CC			= c++
 
 RM			= rm -f
 

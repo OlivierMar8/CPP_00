@@ -4,11 +4,11 @@ OBJS		= $(SRCS:.cpp=.o)
 
 NAME		= phonebook
 
-CC			= c++-12
+CC			= c++
 
 RM			= rm -f
 
-CFLAGS		= -Wall -Werror -Wextra -std=c++98 -g
+CFLAGS		= -Wall -Werror -Wextra -std=c++98 
 
 
 all:		${NAME}

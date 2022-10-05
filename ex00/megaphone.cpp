@@ -1,3 +1,5 @@
+//megaphone.cpp  CPP00 / ex00
+
 #include <iostream>
 
 int	main(int argc, char **argv)

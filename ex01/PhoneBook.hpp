@@ -1,3 +1,5 @@
+//PhoneBook.hpp	CPP00 / ex01
+
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
@@ -25,9 +27,9 @@ class	PhoneBook {
 
 	private:
 
-		Contact	tab[8];
-		int		count;
-		int		oldest;
+		Contact	_tab[8];
+		int		_count;
+		int		_oldest;
 
 };
 

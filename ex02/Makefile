@@ -1,10 +1,10 @@
-SRCS		= 	Account.cpp tests.cpp #main_my.cpp	
+SRCS		= 	Account.cpp tests.cpp 
 
 OBJS		= $(SRCS:.cpp=.o)
 
 NAME		= bank
 
-CC			= c++-12
+CC			= c++
 
 RM			= rm -f
 

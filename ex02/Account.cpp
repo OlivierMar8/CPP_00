@@ -1,3 +1,5 @@
+//Account.cpp	CPP00 / ex02
+
 #include "Account.hpp"
 #include <iostream>
 #include <ctime>
@@ -77,10 +79,13 @@ void Account::makeDeposit( int deposit ) {
 	int		p_amount;
 
 	p_amount = this->_amount;
-	this->_amount += deposit;
-	Account::_totalAmount += deposit;
-	this->_nbDeposits++;
-	Account::_totalNbDeposits++;
+	if (deposit > 0)
+	{
+		this->_amount += deposit;
+		Account::_totalAmount += deposit;
+		this->_nbDeposits++;
+		Account::_totalNbDeposits++;
+	}
 	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex;
 	std::cout << ";p_amount:" << p_amount << ";deposit:" << deposit;
@@ -100,10 +105,13 @@ bool	Account::makeWithdrawal( int withdrawal ) {
 	else
 	{
 		refused = false;
-		this->_amount -= withdrawal;
-		Account::_totalAmount -= withdrawal;
-		this->_nbWithdrawals++;
-		Account::_totalNbWithdrawals++;
+		if (withdrawal > 0)
+		{
+			this->_amount -= withdrawal;
+			Account::_totalAmount -= withdrawal;
+			this->_nbWithdrawals++;
+			Account::_totalNbWithdrawals++;
+		}
 	}
 	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex;
@@ -136,14 +144,11 @@ void	Account::displayStatus ( void ) const {
 
 void Account::_displayTimestamp( void ) {
 
-//	std::cout << "19001004_144100";
 	time_t now;
 
 	time(&now);
 	tm utc_tm = *localtime(&now);
-	/*	std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();
-	std::time_t time_now = std::chrono::system_clock::to_time_t(now);
-*/	std::cout << std::setfill('0') << "[" << (utc_tm.tm_year + 1900);
+	std::cout << std::setfill('0') << "[" << (utc_tm.tm_year + 1900);
 	std::cout << std::setw(2) <<utc_tm.tm_mon + 1;
 	std::cout << std::setw(2) <<utc_tm.tm_mday <<"_";	
 	std::cout << std::setw(2) <<utc_tm.tm_hour;
